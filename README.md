@@ -30,7 +30,12 @@ Rodrigo Camaño
 4. Escribir en una línea el correo electrónico
 5. Esperar a que el profesor también cree su rama y la mergee con main
 6. Hacer el merge con main resolviendo los conflictos que encuentre
-7. Actualizar el repo remoto
+    * Me cambio a main y hago un pull (actualizo en local main)
+    * Vuelvo a cambiar a mi rama
+    * git merge main (me puede dar o no conflictos)
+    * soluciono los conflictos, hago el merge y luego que el merge es exitoso
+    * hago el push
+8. Actualizar el repo remoto
 
 ### Parte II - Buenas prácticas
 1. Crear la rama feature/bash
