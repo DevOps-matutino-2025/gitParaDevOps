@@ -4,6 +4,7 @@
 #gyfseguros@hotmail.com
 #Ejercicio 11: Verificar la existencia de un usuario pasado como parámetro. Si el usuario existe deberá desplegarse el texto “el usuario existe!!!” por la salida estándar. En caso que el usuario no exista, deberá desplegarse el texto “No existe!!!” por la salida estándar y devolviéndose un 1 como código de retorno del script.
 
+
 if [ $# -ne 1 ]; then
 	echo "USO: $0 <usuario>"
 	exit 2
