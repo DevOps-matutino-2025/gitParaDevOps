@@ -41,5 +41,9 @@ Rodrigo Camaño
 1. Crear la rama feature/bash
 2. Crear la carpeta bash
 3. Moverse a la carpeta bash
-4. Agregar los 13 ejercicios resueltos que tenemos en teams, a cada uno de ellos llamarlos (si es que ya no tienen ese nombre) ej01.sh, ej02.hs, y así sucesivamente.
-5. Resolver los problemas en local, charla de buenas prácticas
+4. Agregar los 2 ejercicios de la rama scripts
+5. Agregarle a cada uno un comentario en la segunda línea con el correo
+6. Hacer el commit
+7. Actualizar main
+8. Hacer el merge desde la rama feature/bash con main
+9. Resolver los problemas en local, charla de buenas prácticas
