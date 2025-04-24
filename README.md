@@ -1,5 +1,12 @@
 # grupoDevOps
 
+## Buenas prácticas
+Siempre trabajo en local.
+
+Para trabajar me creo mi propia rama (los nombres de las ramas dependen de la cultura organizacional)
+
+Antes de hacer un push, actualizo la branch desde la cual yo estoy trabajando, soluciono los conflictos y hago el merge en local y luego si puedo hacer el push.
+
 ## Nombres de los integrantes
 
 Joaquin Escudero 
