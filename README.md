@@ -8,6 +8,8 @@ Maximo Brassetti
 
 Giuliana Pedemonti 
 
+Christian Huelmo
+
 # Introducción
 
 - [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
