@@ -1,5 +1,6 @@
 #!/bin/bash
 #genexits@gmail.com
+#maxibrassetti@gmail.com
 #chuelmo@gmail.com
 
 #Ejercicio 12: De un archivo pasado como parámetro, reportar un listado con las 10 palabras más usadas y cuantas veces se ha usado cada una de ellas, ordenando la salida en forma decreciente en función de la cantidad de veces que se han usado (comenzando desde la palabra más usada a las menos usada). 
