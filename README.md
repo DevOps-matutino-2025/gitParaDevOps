@@ -10,6 +10,8 @@ Giuliana Pedemonti
 
 Christian Huelmo
 
+Rodrigo Camaño
+
 # Introducción
 
 - [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
