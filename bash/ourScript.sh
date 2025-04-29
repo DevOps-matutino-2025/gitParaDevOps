@@ -43,12 +43,26 @@ descifrar() {
   done
 
   echo "Texto descifrado: $resultado"
+
+resta(){
+	read -p "Ingrese el primer numero: " num1
+	read -p "Ingrese el segundo numero: " num2
+	resultado=$((num1 - num2))
+	echo "El resultado de la resta es: $resultado"
+}
+
+#Parte Hecha por Rodrigo
+sumar() {
+    read -p "Ingrese el primer número: " num1
+    read -p "Ingrese el segundo número: " num2
+    resultado=$((num1 + num2))
+    echo "La suma de $num1 + $num2 es: $resultado"
+    read -p "Presione Enter para continuar..."
 }
 
 while true; do
 	clear
 	echo "============== MENÚ PRINCIPAL ================"
-	echo "1) Sumar 2 números"
 	echo "2) Restar 2 números"
 	echo "3) Dividir 2 números"
 	echo "4) Multiplicar 2 números"
@@ -62,28 +76,29 @@ while true; do
 
 	case $opcion in
 		1)
-			echo "suma"
+			suma
 			;;
 		2)
-			echo "resta"
+
+			resta
 			;;
 		3)
-			echo "división"
+			división
 			;;
 		4)
-			echo "multiplicar"
+			multiplicar
 			;;
 		5)
-			echo "Valor ASCII"
+			Valor ASCII
 			;;
 		6)
-			echo "Caracter según ASCII"
+			Caracter según ASCII
 			;;
 		7)
-			echo "cifrado"
+			cifrado
 			;;
 		8)
-			echo "descifrado"
+			descifrado
 			;;
 		9)
 			echo "Saliendo del programa..."
