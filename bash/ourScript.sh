@@ -16,6 +16,13 @@
 #Joaquín Manzanar: función cifrar()
 #Joaquín Cabrera: función descifrar()
 
+resta(){
+	read -p "Ingrese el primer numero: " num1
+	read -p "Ingrese el segundo numero: " num2
+	resultado=$((num1 - num2))
+	echo "El resultado de la resta es: $resultado"
+}
+
 #Parte Hecha por Rodrigo
 sumar() {
     read -p "Ingrese el primer número: " num1
@@ -44,6 +51,7 @@ while true; do
 			suma
 			;;
 		2)
+
 			resta
 			;;
 		3)
