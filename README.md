@@ -9,6 +9,8 @@ Antes de hacer un push, actualizo la branch desde la cual yo estoy trabajando, s
 
 ## Nombres de los integrantes
 
+Joaquin Cabrera
+
 Joaquin Escudero 
 
 Maximo Brassetti
