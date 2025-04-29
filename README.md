@@ -47,3 +47,17 @@ Rodrigo Camaño
 7. Actualizar main
 8. Hacer el merge desde la rama feature/bash con main
 9. Resolver los problemas en local, charla de buenas prácticas
+
+### Parte III - Conquistando los puntos
+1. En local moverse y actualizar la rama main
+2. Modificar el archivo estudiantes agregándole su nombre
+3. Hacer el commit correspondiente
+4. Hacer el push en la rama main
+5. Enviar una captura de pantalla al correo del profesor, asunto: nombre del alumnos - captura push en main
+6. Revertir el último commit
+7. Enviar captura de pantalla al correo del profesor, asunto: nombre del alumno - revert del commit
+8. Crear la rama feature/NombreAlumno
+9. Modificar el script ourScript.sh que se encuentra en la carpeta bash
+10. Resolver conflictos en local
+11. Hacer el push de la rama
+12. Solicitar un PR de lo subido
