@@ -16,6 +16,19 @@
 #Joaquín Manzanar: función cifrar()
 #Joaquín Cabrera: función descifrar()
 
+#ASCII a Char
+
+Caracter según ASCII() {
+
+	#Verificacion de argumento
+        if [ $# -ne 1 ]; then
+	        echo "Uso $0 <codigo_ascii>"
+                exit 1
+        fi
+
+        #Conversion e impresion de caracter
+        printf "\\x$(printf '%x' "$1")\n"
+
 division() {
     echo "Ingrese el dividendo"
 	read -r num1
@@ -123,8 +136,10 @@ while true; do
 			Valor ASCII
 			;;
 		6)
+
 			Caracter según ASCII
 			;;
+
 		7)
 			cifrado
 			;;
