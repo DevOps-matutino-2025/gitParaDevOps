@@ -16,6 +16,18 @@
 #Joaquín Manzanar: función cifrar()
 #Joaquín Cabrera: función descifrar()
 
+#ASCII a Char
+
+ASCII2char() {
+
+	#Verificacion de argumento
+        if [ $# -ne 1 ]; then
+	        echo "Uso $0 <codigo_ascii>"
+                exit 1
+        fi
+
+        #Conversion e impresion de caracter
+        printf "\\x$(printf '%x' "$1")\n"
 
 while true; do
 	clear
@@ -50,16 +62,6 @@ while true; do
 			;;
 		6)
 			echo "Caracter según ASCII"
-			#!/bin/bash
-
-			#Verificacion de argumento
-			if [ $# -ne 1 ]; then
-				echo "Uso $0 <codigo_ascii>"
-				exit 1
-			fi
-
-			#Conversion e impresion de caracter
-			printf "\\x$(printf '%x' "$1")\n"
 
 		7)
 			echo "cifrado"
