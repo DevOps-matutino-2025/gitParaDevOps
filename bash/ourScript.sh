@@ -16,11 +16,18 @@
 #Joaquín Manzanar: función cifrar()
 #Joaquín Cabrera: función descifrar()
 
+#Parte Hecha por Rodrigo
+sumar() {
+    read -p "Ingrese el primer número: " num1
+    read -p "Ingrese el segundo número: " num2
+    resultado=$((num1 + num2))
+    echo "La suma de $num1 + $num2 es: $resultado"
+    read -p "Presione Enter para continuar..."
+}
 
 while true; do
 	clear
 	echo "============== MENÚ PRINCIPAL ================"
-	echo "1) Sumar 2 números"
 	echo "2) Restar 2 números"
 	echo "3) Dividir 2 números"
 	echo "4) Multiplicar 2 números"
