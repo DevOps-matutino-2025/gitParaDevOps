@@ -41,28 +41,28 @@ while true; do
 
 	case $opcion in
 		1)
-			echo "suma"
+			suma
 			;;
 		2)
-			echo "resta"
+			resta
 			;;
 		3)
-			echo "división"
+			división
 			;;
 		4)
-			echo "multiplicar"
+			multiplicar
 			;;
 		5)
-			echo "Valor ASCII"
+			Valor ASCII
 			;;
 		6)
-			echo "Caracter según ASCII"
+			Caracter según ASCII
 			;;
 		7)
-			echo "cifrado"
+			cifrado
 			;;
 		8)
-			echo "descifrado"
+			descifrado
 			;;
 		9)
 			echo "Saliendo del programa..."
