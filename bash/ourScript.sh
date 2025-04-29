@@ -18,7 +18,7 @@
 
 #ASCII a Char
 
-ASCII2char() {
+Caracter según ASCII() {
 
 	#Verificacion de argumento
         if [ $# -ne 1 ]; then
@@ -29,10 +29,84 @@ ASCII2char() {
         #Conversion e impresion de caracter
         printf "\\x$(printf '%x' "$1")\n"
 
+division() {
+    echo "Ingrese el dividendo"
+	read -r num1
+	echo "Ingrese el divisor"
+	read -r num2
+
+	# Verifica que ambos parámetros sean números (enteros o decimales)
+
+	es_numero='^-?[0-9]+([.][0-9]+)?$'
+
+	if ! [[ $num1 =~ $es_numero ]]; then
+	  echo "Error: '$num1' no es un número válido."
+	  exit 2
+	fi
+
+	if ! [[ $num2 =~ $es_numero ]]; then
+ 		echo "Error: '$num2' no es un número válido."
+  		exit 2
+	fi
+
+	#Verificacion del divisor
+	if [[ $(echo "$num1 == 0" | bc) -eq 1 ]]; then
+  		echo "Error: División por cero"
+  		exit 3
+	fi
+
+	result=$(echo "scale=2; $num1 / $num2" | bc)
+
+	echo "Resultado: $result"
+}
+
+descifrar() {
+  local texto despl resultado="" car código nuevo
+
+  read -p "Texto cifrado: " texto
+  read -p "Desplazamiento (número): " despl
+
+  # Recorremos carácter a carácter
+  for (( i=0; i<${#texto}; i++ )); do
+    car="${texto:i:1}"
+    # Solo letras A–Z y a–z
+    if [[ "$car" =~ [A-Z] ]]; then
+      código=$(printf '%d' "'$car")
+      # A=65…Z=90
+      nuevo=$(( (código - 65 - despl + 26) % 26 + 65 ))
+      resultado+=$(printf \\$(printf '%03o' "$nuevo"))
+    elif [[ "$car" =~ [a-z] ]]; then
+      código=$(printf '%d' "'$car")
+      # a=97…z=122
+      nuevo=$(( (código - 97 - despl + 26) % 26 + 97 ))
+      resultado+=$(printf \\$(printf '%03o' "$nuevo"))
+    else
+      # si no es letra, lo dejamos igual
+      resultado+="$car"
+    fi
+  done
+
+  echo "Texto descifrado: $resultado"
+
+resta(){
+	read -p "Ingrese el primer numero: " num1
+	read -p "Ingrese el segundo numero: " num2
+	resultado=$((num1 - num2))
+	echo "El resultado de la resta es: $resultado"
+}
+
+#Parte Hecha por Rodrigo
+sumar() {
+    read -p "Ingrese el primer número: " num1
+    read -p "Ingrese el segundo número: " num2
+    resultado=$((num1 + num2))
+    echo "La suma de $num1 + $num2 es: $resultado"
+    read -p "Presione Enter para continuar..."
+}
+
 while true; do
 	clear
 	echo "============== MENÚ PRINCIPAL ================"
-	echo "1) Sumar 2 números"
 	echo "2) Restar 2 números"
 	echo "3) Dividir 2 números"
 	echo "4) Multiplicar 2 números"
@@ -46,28 +120,31 @@ while true; do
 
 	case $opcion in
 		1)
-			echo "suma"
+			suma
 			;;
 		2)
-			echo "resta"
+
+			resta
 			;;
 		3)
-			echo "división"
+			división
 			;;
 		4)
-			echo "multiplicar"
+			multiplicar
 			;;
 		5)
-			echo "Valor ASCII"
+			Valor ASCII
 			;;
 		6)
-			echo "Caracter según ASCII"
+
+			Caracter según ASCII
+			;;
 
 		7)
-			echo "cifrado"
+			cifrado
 			;;
 		8)
-			echo "descifrado"
+			descifrado
 			;;
 		9)
 			echo "Saliendo del programa..."
