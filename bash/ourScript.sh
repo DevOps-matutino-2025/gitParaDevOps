@@ -16,6 +16,37 @@
 #Joaquín Manzanar: función cifrar()
 #Joaquín Cabrera: función descifrar()
 
+division() {
+    echo "Ingrese el dividendo"
+	read -r num1
+	echo "Ingrese el divisor"
+	read -r num2
+
+	# Verifica que ambos parámetros sean números (enteros o decimales)
+
+	es_numero='^-?[0-9]+([.][0-9]+)?$'
+
+	if ! [[ $num1 =~ $es_numero ]]; then
+	  echo "Error: '$num1' no es un número válido."
+	  exit 2
+	fi
+
+	if ! [[ $num2 =~ $es_numero ]]; then
+ 		echo "Error: '$num2' no es un número válido."
+  		exit 2
+	fi
+
+	#Verificacion del divisor
+	if [[ $(echo "$num1 == 0" | bc) -eq 1 ]]; then
+  		echo "Error: División por cero"
+  		exit 3
+	fi
+
+	result=$(echo "scale=2; $num1 / $num2" | bc)
+
+	echo "Resultado: $result"
+}
+
 
 while true; do
 	clear
