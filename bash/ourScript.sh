@@ -16,7 +16,7 @@
 #Joaquín Manzanar: función cifrar()
 #Joaquín Cabrera: función descifrar()
 
-restar(){
+resta(){
 	read -p "Ingrese el primer numero: " num1
 	read -p "Ingrese el segundo numero: " num2
 	resultado=$((num1 - num2))
@@ -40,28 +40,29 @@ while true; do
 
 	case $opcion in
 		1)
-			echo "suma"
+			suma
 			;;
 		2)
-			restar
+
+			resta
 			;;
 		3)
-			echo "división"
+			división
 			;;
 		4)
-			echo "multiplicar"
+			multiplicar
 			;;
 		5)
-			echo "Valor ASCII"
+			Valor ASCII
 			;;
 		6)
-			echo "Caracter según ASCII"
+			Caracter según ASCII
 			;;
 		7)
-			echo "cifrado"
+			cifrado
 			;;
 		8)
-			echo "descifrado"
+			descifrado
 			;;
 		9)
 			echo "Saliendo del programa..."
