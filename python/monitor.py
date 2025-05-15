@@ -92,3 +92,18 @@ if __name__ == "__main__":
     recopilar_metricas(duracion_segundos=5, intervalo=1)
     informe = analizar_metricas()
     print(informe)
+    
+    
+# Que necesito instalar
+# sudo apt install python3-pip
+# sudo apt install python3-ven
+
+# Creando el entrono virtual
+# python -m venv [carpeta]
+
+# Activar el entorno virtual
+# cd [carpeta]
+# source bin/activate
+
+# instalar paquetes
+# pip3 install psutil
