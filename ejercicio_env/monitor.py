@@ -73,8 +73,15 @@ def generar_alertas():
         elif metrica["cpu_uso"] > 75:
             alertas.append(f"ALERTA: Uso de CPU elevado ({metrica['cpu_uso']:.2f}%) en {metrica['timestamp']}")
         
-        # agregar las alertas tanto para el uso de memoria como para el uso de disco
+        if metrica["memoria_uso"] > 90:
+            alertas.append(f"ALERTA CRÍTICA: Uso de Memoria alta ({metrica['memoria_uso']:.2f}%) en {metrica['timestamp']}")
+        elif metrica["memoria_uso"] > 75:
+            alertas.append(f"ALERTA: Uso de Memoria elevada ({metrica['memoria_uso']:.2f}%) en {metrica['timestamp']}")
 
+        if metrica["disco_uso"] > 90:
+            alertas.append(f"ALERTA CRÍTICA: Uso de Disco alto ({metrica['disco_uso']:.2f}%) en {metrica['timestamp']}")
+        elif metrica["disco_uso"] > 75:
+            alertas.append(f"ALERTA: Uso de Disco elevado ({metrica['disco_uso']:.2f}%) en {metrica['timestamp']}")
 
 
     return "\n    ".join(alertas) if alertas else "No se detectaron alertas."
