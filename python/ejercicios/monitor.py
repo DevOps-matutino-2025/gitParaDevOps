@@ -4,6 +4,7 @@
 import time
 from datetime import datetime
 import random # usar import psutil en vez de random
+import psutil
 
 
 
@@ -35,13 +36,21 @@ def analizar_metricas():
     if not metricas:
         return "No hay métricas para analizar."
 
-    cpu_promedio = calcular_promedio("cpu")
-    memoria_promedio = calcular_promedio("memoria")
-    disco_promedio = calcular_promedio("disco")
+    #cpu_promedio = calcular_promedio("cpu")
+    #memoria_promedio = calcular_promedio("memoria")
+    #disco_promedio = calcular_promedio("disco")
+    
+    cpu_promedio = sum(m['cpu_uso'] for m in metricas) / len(metricas)
+    memoria_promedio = sum(m['memoria_uso'] for m in metricas) / len(metricas)
+    disco_promedio = sum(m['disco_uso'] for m in metricas) / len(metricas)
 
-    cpu_max = uso_maximo("cpu")
-    memoria_max = uso_maximo("cpu")
-    disco_max = uso_maximo("cpu")
+    #cpu_max = uso_maximo("cpu")
+    #memoria_max = uso_maximo("memoria")
+    #disco_max = uso_maximo("disco")
+    
+    cpu_max = max(m['cpu_uso'] for m in metricas)
+    memoria_max = max(m['memoria_uso'] for m in metricas)
+    disco_max = max(m['disco_uso'] for m in metricas)
 
     informe = f"""
     === INFORME DE RECURSOS DEL SISTEMA ===
@@ -72,6 +81,16 @@ def generar_alertas():
             alertas.append(f"ALERTA CRÍTICA: Uso de CPU alto ({metrica['cpu_uso']:.2f}%) en {metrica['timestamp']}")
         elif metrica["cpu_uso"] > 75:
             alertas.append(f"ALERTA: Uso de CPU elevado ({metrica['cpu_uso']:.2f}%) en {metrica['timestamp']}")
+            
+        if metrica["memoria_uso"] > 90:
+            alertas.append(f"ALERTA CRÍTICA: Uso de CPU alto ({metrica['memoria_uso']:.2f}%) en {metrica['timestamp']}")
+        elif metrica["memoria_uso"] > 75:
+            alertas.append(f"ALERTA: Uso de CPU elevado ({metrica['memoria_uso']:.2f}%) en {metrica['timestamp']}")
+            
+        if metrica["disco_uso"] > 90:
+            alertas.append(f"ALERTA CRÍTICA: Uso de CPU alto ({metrica['disco_uso']:.2f}%) en {metrica['timestamp']}")
+        elif metrica["disco_uso"] > 75:
+            alertas.append(f"ALERTA: Uso de CPU elevado ({metrica['disco_uso']:.2f}%) en {metrica['timestamp']}")
         
         # agregar las alertas tanto para el uso de memoria como para el uso de disco
 
@@ -81,11 +100,38 @@ def generar_alertas():
 
 def calcular_promedio(device):
     # calcular correctamente
-    return random.uniform(0, 100)
+    # metricas [ {'memoria_uso': 50, 'cpu_uso':34}, {'memoria_uso': 50, 'cpu_uso':42}, {'memoria_uso': 50, 'cpu_uso':5}, {'memoria_uso': 50, 'cpu_uso':80}]
+    suma = 0
+    if device == "cpu":
+    	for m in metricas:
+        	suma += m['cpu_uso']
+    elif device == "memoria":
+    	for m in metricas:
+        	suma += m['memoria_uso']
+    elif device == "disco":
+    	for m in metricas:
+        	suma += m['disco_uso']
+    promedio = suma / len(metricas)
+    return promedio
+
 
 def uso_maximo(device):
     # calcular correctamente
-    return random.uniform(0, 100)
+    maximo = -1
+    if device == "cpu":
+    	for m in metricas:
+    	    if m['cpu_uso'] > maximo:
+    	        maximo = m['cpu_uso']
+    if device == "memoria":
+    	for m in metricas:
+    	    if m['memoria_uso'] > maximo:
+    	        maximo = m['memoria_uso']
+    if device == "disco":
+    	for m in metricas:
+    	    if m['disco_uso'] > maximo:
+    	        maximo = m['disco_uso']
+    return maximo
+
 
 # Ejecución para demo interactiva
 if __name__ == "__main__":
