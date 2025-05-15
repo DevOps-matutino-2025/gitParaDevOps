@@ -3,7 +3,7 @@
 
 import time
 from datetime import datetime
-import random # usar import psutil en vez de random
+import psutil # usar import psutil en vez de random
 
 
 
@@ -16,9 +16,9 @@ def recopilar_metricas(duracion_segundos=10, intervalo=1):
 
     while time.time() < tiempo_fin:
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        cpu_uso = random.uniform(0, 100) # sustituir el uso de random por psutil.cpu_percent(interval=None)
-        memoria_uso = random.uniform(0, 100) # usar psutil.virtual_memory().percent
-        disco_uso = random.uniform(0, 100) # psutil.disk_usage('/').percent
+        cpu_uso = psutil.cpu_percent(interval=None) # sustituir el uso de random por psutil.cpu_percent(interval=None)
+        memoria_uso = psutil.virtual_memory().percent # usar psutil.virtual_memory().percent
+        disco_uso = psutil.disk_usage('/').percent # psutil.disk_usage('/').percent
 
         metrica = {
             "timestamp": timestamp,
@@ -40,8 +40,8 @@ def analizar_metricas():
     disco_promedio = calcular_promedio("disco")
 
     cpu_max = uso_maximo("cpu")
-    memoria_max = uso_maximo("cpu")
-    disco_max = uso_maximo("cpu")
+    memoria_max = uso_maximo("memoria")
+    disco_max = uso_maximo("disco")
 
     informe = f"""
     === INFORME DE RECURSOS DEL SISTEMA ===
@@ -75,17 +75,42 @@ def generar_alertas():
         
         # agregar las alertas tanto para el uso de memoria como para el uso de disco
 
+        if metrica["memoria_uso"] > 90:
+            alertas.append(f"ALERTA CRÍTICA: Uso de MEMORIA alto ({metrica['memoria_uso']:.2f}%) en {metrica['timestamp']}")
+        elif metrica["memoria_uso"] > 75:
+            alertas.append(f"ALERTA: Uso de MEMORIA elevado ({metrica['memoria_uso']:.2f}%) en {metrica['timestamp']}")
+    
+        if metrica["disco_uso"] > 90:
+            alertas.append(f"ALERTA CRÍTICA: Uso de DISCO alto ({metrica['disco_uso']:.2f}%) en {metrica['timestamp']}")
+        elif metrica["disco_uso"] > 75:
+            alertas.append(f"ALERTA: Uso de DISCO elevado ({metrica['disco_uso']:.2f}%) en {metrica['timestamp']}")
 
 
     return "\n    ".join(alertas) if alertas else "No se detectaron alertas."
 
 def calcular_promedio(device):
     # calcular correctamente
-    return random.uniform(0, 100)
+    total = 0
+    cantidad = len(metricas)
+
+    for m in metricas:
+        total += m[device + "_uso"]
+    
+    if cantidad == 0:
+        return 0
+    else:
+        return total / cantidad
 
 def uso_maximo(device):
     # calcular correctamente
-    return random.uniform(0, 100)
+    maximo = 0
+
+    for m in metricas:
+        if m[device + "_uso"] > maximo:
+            maximo = m[device + "_uso"]
+
+    return maximo
+
 
 # Ejecución para demo interactiva
 if __name__ == "__main__":
