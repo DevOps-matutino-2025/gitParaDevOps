@@ -12,3 +12,5 @@ palabra = input("Ingrese una cadena: ")
 letra = input ("Ingrese un caracter: ")
 
 print(buscarPosiciones(palabra, letra))
+
+
