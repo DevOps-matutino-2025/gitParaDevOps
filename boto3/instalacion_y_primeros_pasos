@@ -1,0 +1,55 @@
+Instalar AWS cli en linux
+
+1) Descargar el paquete del sitio oficial
+
+curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
+
+2) Deszipiarlo
+
+unzip awscliv2.zip
+
+3) Se crea un directorio aws
+
+4) Instalar el sdk
+
+sudo ./aws/install
+
+5) Verificar que esté instalado
+
+aws --version
+
+6) Para poder usar boto3 contra mi cuenta de AWS tengo que indicarle cuales son las credenciales de acceso.
+
+Saco los datos de mi cuenta de AWS, los ingreso a mi sistema con el siguiente comando
+
+aws configure
+
+Este comando va a crear un directorio ~/.aws y dentro de este directorio se van a crear 2 archivos
+El archivo config y el archivo credentials
+
+Segunda parte es crear un ambiente virtual e instalar la libreria boto3
+La quickstart de boto3 está en --> https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html
+1) Crear el ambiente
+python3 -m venv ambienteVirtual
+
+2) Activar el ambiente
+source ./ambienteVirtual/bin/activate
+
+3) Instalar boto3 con pip 
+pip3 install boto3
+
+4) Correr un script de ejemplo.
+import boto3
+
+s3 = boto3.resource('s3')
+
+for bucket in s3.buckets.all():
+	print(f"Nombre: {bucket}")
+
+Parte III
+En el caso nuestro como estamos trabajando con una cuenta de AWS Academy utilizamos para correr los scripts otro servicio de AWS que se llama Cloud9.
+
+Cloud9 me permite crear environments de desarrollo, y trabajar desde el navegador.
+Los scripts no necesitan configurar las credenciales porque es un servicio que está dentro de AWS y ya estamos logueados y por lo tanto sabe quienes somos.
+
+En Cloud9 podemos correr los scripts que queramos.
