@@ -20,9 +20,14 @@ aws --version
 
 6) Para poder usar boto3 contra mi cuenta de AWS tengo que indicarle cuales son las credenciales de acceso.
 
-Saco los datos de mi cuenta de AWS, los ingreso a mi sistema con el siguiente comando
+Saco los datos de mi cuenta de AWS Academy (AWS Details / AWS Cli), los ingreso a mi sistema con el siguiente comando
+aws_access_key_id=
+aws_secret_access_key=
+aws_session_token=
+
 
 aws configure
+
 
 Este comando va a crear un directorio ~/.aws y dentro de este directorio se van a crear 2 archivos
 El archivo config y el archivo credentials
