@@ -1,0 +1,108 @@
+# ───────────────────────────────────────────────
+# 1) Variables de entorno
+#    • Ignorar .env (secretos de producción)
+#    • Incluir explícitamente .env.local
+# ───────────────────────────────────────────────
+.env
+!.env.local
+
+# ───────────────────────────────────────────────
+# 2) Bytecode y cachés de Python
+# ───────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ───────────────────────────────────────────────
+# 3) Directorios de entornos virtuales
+# ───────────────────────────────────────────────
+# (ajusta los nombres según tu convención)
+.venv/
+venv/
+env/
+ENV/
+venv.bak/
+
+# ───────────────────────────────────────────────
+# 4) Distribución / packaging
+# ───────────────────────────────────────────────
+build/
+dist/
+sdist/
+*.egg-info/
+.eggs/
+wheels/
+share/python-wheels/
+pip-wheel-metadata/
+*.egg
+MANIFEST
+
+# ───────────────────────────────────────────────
+# 5) PyInstaller
+# ───────────────────────────────────────────────
+*.spec
+
+# ───────────────────────────────────────────────
+# 6) C extensiones / binarios
+# ───────────────────────────────────────────────
+*.so
+
+# ───────────────────────────────────────────────
+# 7) Logs y dumps
+# ───────────────────────────────────────────────
+*.log
+*.pot
+*.py[cod].map
+*.cover
+coverage.xml
+*.sqlite3
+*.db
+*.pid
+*.seed
+*.swp
+
+# ───────────────────────────────────────────────
+# 8) Configuración de editores/IDEs
+# ───────────────────────────────────────────────
+# VS Code
+.vscode/
+
+# PyCharm / IntelliJ
+.idea/
+
+# Sublime Text
+*.sublime-*
+
+# Vim / Neovim
+*.sw?
+Session.vim
+
+# ───────────────────────────────────────────────
+# 9) Archivos de prueba y profiling
+# ───────────────────────────────────────────────
+htmlcov/
+.tox/
+noxfile_*.*
+.pytest_cache/
+.coverage*
+.cache/
+nosetests.xml
+pytest.xml
+
+# ───────────────────────────────────────────────
+# 10) Mypy, Pylint, otros lints
+# ───────────────────────────────────────────────
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+
+# ───────────────────────────────────────────────
+# 11) Notas temporales y backups
+# ───────────────────────────────────────────────
+*~
+*.bak
+*.orig
+*.tmp
+.DS_Store
+Thumbs.db

@@ -1,4 +1,13 @@
 import boto3
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+DB_INSTANCE_CLASS = os.getenv('DB_INSTANCE_CLASS')
+ENGINE = os.getenv('ENGINE')
+USER_NAME = os.getenv('USER_NAME')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
 
 ec2 = boto3.client('ec2')
 
@@ -118,10 +127,10 @@ try:
 	response3 = rds.create_db_instance(
 		DBInstanceIdentifier=db_instance_identifier,
 		AllocatedStorage=20,
-		DBInstanceClass='db.t3.micro',
-		Engine='mysql',
-		MasterUsername='admin',
-		MasterUserPassword='ps1234Admin',
+		DBInstanceClass=DB_INSTANCE_CLASS,
+		Engine=ENGINE,
+		MasterUsername=USER_NAME,
+		MasterUserPassword=DB_PASSWORD,
 		VpcSecurityGroupIds=[sg_db_boto3_id]
 	)
 	print(f"Base de datos creada con el nombre {db_instance_identifier}")
@@ -147,6 +156,7 @@ user_data_script = f'''#!/bin/bash
 sudo yum update -y
 sudo yum install -y mariadb105-server-utils.x86_64
 echo "Conexion a la base de datos en: {db_endpoint}" > /home/ec2-user/db_info.txt
+#mysql -h {db_endpoint} -u admin < obli.sql
 '''
 
 TAG_VALUE_NAME = "El-buenito-ec2"
