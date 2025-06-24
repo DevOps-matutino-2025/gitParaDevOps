@@ -9,6 +9,9 @@ ENGINE = os.getenv('ENGINE')
 USER_NAME = os.getenv('USER_NAME')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
 
+datos_config = os.getenv("DATA_AWS_CONFIG").replace("\\n", "\n")
+datos_credentials = os.getenv("DATA_AWS_CREDENTIALS").replace("\\n", "\n")
+
 ec2 = boto3.client('ec2')
 
 #creamos el grupo de seguridad para la DB
@@ -150,16 +153,41 @@ except Exception as e:
 		raise
 
 
-#Crear la instancia ec2 y el script para instalar mysql en la instancia creada
+#Crear la instancia ec2 y el script para instalar los comandos de mysql necesarios para conectarse a la RDS en la instancia creada
 
 user_data_script = f'''#!/bin/bash
 sudo yum update -y
 sudo yum install -y mariadb105-server-utils.x86_64
 echo "Conexion a la base de datos en: {db_endpoint}" > /home/ec2-user/db_info.txt
-#mysql -h {db_endpoint} -u admin < obli.sql
+# Instalar AWS CLI v2 si no está instalado
+if ! command -v aws &> /dev/null
+then
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    unzip awscliv2.zip
+    sudo ./aws/install
+fi
+mkdir /home/ec2-user/.aws
+
+cat <<'EOF' > /home/ec2-user/.aws/config
+{datos_config}
+EOF
+
+cat <<'EOF' > /home/ec2-user/.aws/credentials
+{datos_credentials}
+EOF
+
+export AWS_PROFILE=default
+export AWS_CONFIG_FILE=/home/ec2-user/.aws/config
+export AWS_SHARED_CREDENTIALS_FILE=/home/ec2-user/.aws/credentials
+
+echo "Intento ejecutar el comando de copia de aws"
+aws s3 cp s3://mi-bucket-51a232da-e78c-41d8-a55b-6ccbb111c796/ejemplo.txt /home/ec2-user/rodri.txt  >> /home/ec2-user/loguito.txt 2>&1
+
+# Ejecutar el script SQL en la base de datos RDS
+# mysql -h {db_endpoint} -u {USER_NAME} -p'{DB_PASSWORD}' < /home/ec2-user/datos.sql
 '''
 
-TAG_VALUE_NAME = "El-buenito-ec2"
+TAG_VALUE_NAME = "PCObligatorio"
 
 print(f"Intentando crear la instancia ec2 con nombre: '{TAG_VALUE_NAME}'")
 
